@@ -3,14 +3,14 @@ from dash import Dash, html, dcc, Input, Output, callback
 import plotly.express as px
 
 # Reading the excel file
-osaa_production_report = pd.ExcelFile(r"Osaa Production Report '23.xlsx")
+osaa_production_report = pd.ExcelFile("Osaa Production Report '23.xlsx")
 
 # listing the sheets by their names
 sheet_list = [i for i in osaa_production_report.sheet_names]
 
-print(sheet_list)
+# print(sheet_list)
 
-print(len(sheet_list))
+# print(len(sheet_list))
 
 # creating an empty list to store the dataframes
 total_data = []
@@ -23,7 +23,7 @@ for i in range(len(sheet_list)):
     stock_data=stock_data.drop(stock_data.index[0],axis=0)
     stock_data["INVENTORY TYPE"]="STOCK"
     stock_data=stock_data.dropna(subset="DESIGN CODE")
-    print(stock_data.shape)
+    # print(stock_data.shape)
 
 
     client_data = data_month.iloc[0:,6:10]
@@ -31,19 +31,19 @@ for i in range(len(sheet_list)):
     client_data=client_data.drop(client_data.index[0],axis=0)
     client_data["INVENTORY TYPE"]="CLIENT"
     client_data=client_data.dropna(subset="DESIGN CODE")
-    print(client_data.shape)
+    # print(client_data.shape)
 
 
     monthly_dataframe = pd.concat([stock_data,client_data],axis=0)
     monthly_dataframe = monthly_dataframe.reset_index()
     monthly_dataframe.drop("index",axis=1,inplace=True)
-    print(monthly_dataframe.shape)
+    # print(monthly_dataframe.shape)
     total_data.append(monthly_dataframe)
     
 
 production_order_data_osaa = pd.concat([i for i in total_data],axis=0)
 
-print(production_order_data_osaa)
+# print(production_order_data_osaa)
 osaa_production_report.close()
 
 production_order_data_osaa["ORDER DATE"]=pd.to_datetime(production_order_data_osaa["ORDER DATE"])
