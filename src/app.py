@@ -49,6 +49,7 @@ osaa_production_report.close()
 production_order_data_osaa["ORDER DATE"]=pd.to_datetime(production_order_data_osaa["ORDER DATE"])
 production_order_data_osaa["Month Name"]=production_order_data_osaa["ORDER DATE"].dt.month_name()
 production_order_data_osaa["Week Number"]=production_order_data_osaa["ORDER DATE"].dt.day.apply(lambda x: (x-1)//7 + 1)
+production_order_data_osaa["Week Number"]=production_order_data_osaa["Week Number"].apply(lambda x: "Week " + str(x))
 production_order_data_osaa.fillna("no data",inplace=True)
 
 
