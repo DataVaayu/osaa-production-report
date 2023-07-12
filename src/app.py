@@ -76,7 +76,7 @@ app.layout = html.Div([
 
 def update_graph(value1):
     columns=value1
-    fig = px.sunburst(production_order_data_osaa,path=columns,width=1000,height=700)
+    fig = px.sunburst(production_order_data_osaa,path=columns,values="QUANTITY",width=1000,height=700)
     fig.update_traces(textinfo="label+value")
     
     return fig
