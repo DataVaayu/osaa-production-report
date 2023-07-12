@@ -3,7 +3,7 @@ from dash import Dash, html, dcc, Input, Output, callback
 import plotly.express as px
 
 # Reading the excel file
-osaa_production_report = pd.ExcelFile(r"Osaa Production Report '23.xlsx")
+osaa_production_report = pd.ExcelFile("Osaa Production Report '23.xlsx")
 
 # listing the sheets by their names
 sheet_list = [i for i in osaa_production_report.sheet_names]
